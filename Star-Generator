@@ -1,0 +1,38 @@
+% Generates stars with n vertices. Draws lines by skipping vertices.
+
+x = -1:0.01:1; %Defining an array to use as x
+
+n = 21;  %Number of vertices of the star
+skip = 10; %Number of vertices to skip between lines
+
+all = 0; % Draws all possible combinations for particular n vertices
+
+deg_arr = circle_div(n);
+
+x_arr = cir_x(deg_arr);
+y_arr = cir_y(deg_arr);
+
+figure()
+plot(x_arr, y_arr, 'o')
+hold on;
+
+plot(exp(1i*(0:.1:2*pi)))
+axis([-1, 1, -1, 1])
+
+color_array = winter(floor((n/2)));
+    
+if (all == 1)
+    
+    for ii = 0:floor((n/2)-1)
+
+        lines2( x_arr, y_arr, n, ii, color_array((ii+1), :) )
+    
+    end
+    
+else
+    
+    lines2( x_arr, y_arr, n, skip, color_array(1, :) )
+    
+end
+
+hold off;
