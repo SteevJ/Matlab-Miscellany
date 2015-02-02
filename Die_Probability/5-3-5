@@ -1,0 +1,47 @@
+% Tests average number of rolls it takes to get sequence 5-3-5.
+
+answer = 0;
+roll = randi(6, 1, 1);
+n = 1;
+iterations = 10000;
+data = zeros(1, iterations);
+
+for j = 1:iterations
+
+    answer = 0;
+    n = 1;
+    roll = randi(6, 1, 1);
+    
+while (answer == 0)
+    
+    roll = randi(6, 1, 1);
+    n = n + 1;
+    
+    if (roll == 5)
+        
+        roll = randi(6, 1, 1);
+        n = n + 1;
+        
+        if (roll == 3)
+            
+            roll = randi(6, 1, 1);
+            n = n + 1;
+            
+            if (roll == 5)
+                
+                answer = 1;
+                data(j) = n;
+                
+            end
+            
+        end
+        
+    end
+    
+end
+
+end
+
+message = ['Average of ' num2str(mean(data)) ' rolls.'];
+
+disp(message)
